@@ -19,7 +19,9 @@ xmin, xmax  = -1, 1           # --- Boundaries of the solution domain
 x, h        = np.linspace(xmin, xmax, N, retstep = True)
 
 # --- Solution initialization
-u           = np.zeros(N)
+u           = np.zeros(N) + 10 * (xmax - xmin)
+u[0]        = 0.
+u[N - 1]    = 0.
 uold        = np.zeros(N)
 
 # --- Iterations
@@ -29,18 +31,18 @@ while err > tol:
 
     # --- Sweep from left to right
     for n in range(1, N - 1):
-        u[n] = min(u[n - 1], u[n + 1]) + h
+        u[n] = min(min(u[n - 1], u[n + 1]) + h, u[n])
 
     # --- Sweep from right to left
     for n in range(N - 2, 0, -1):
-        u[n] = min(u[n - 1], u[n + 1]) + h
+        u[n] = min(min(u[n - 1], u[n + 1]) + h, u[n])
 
     err = np.linalg.norm(u - uold)
 
     plt.figure(1)
     plt.plot(x, np.abs(u))
     plt.draw()
-    plt.pause(0.01)
+    plt.pause(1)
 
 plt.figure(1)
 plt.plot(x, np.abs(u))
