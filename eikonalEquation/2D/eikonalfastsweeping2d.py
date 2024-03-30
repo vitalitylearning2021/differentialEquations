@@ -94,5 +94,9 @@ y = np.arange(0, N) * h
 plt.figure(1)
 plt.imshow(u, extent=(x[0], x[-1], y[0], y[-1]))
 plt.colorbar()
+plt.xlabel('x [arbitrary units]')
+plt.ylabel('y [arbitrary units]')
 plt.title('Eikonal Solution')
 plt.show()
+
+np.savetxt('FS_result.txt', u, fmt='%d')
