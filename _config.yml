@@ -1,3 +1,30 @@
-theme: jekyll-theme-minimal
+# Site Settings
 title: My GitHub Page
-description: A brief description of my page.
+description: A personal site to showcase my projects.
+url: https://<your-username>.github.io/<repository-name>
+baseurl: /<repository-name> # Remove this line if using a user/organization page
+author: <Your Name>
+
+# Jekyll Theme
+theme: jekyll-theme-leap-day
+
+# Social Links (if supported by the theme)
+social_links:
+  - name: GitHub
+    url: https://github.com/<your-username>
+  - name: LinkedIn
+    url: https://www.linkedin.com/in/<your-profile>
+
+# Customization Options
+markdown: kramdown
+highlighter: rouge
+
+# Plugins
+plugins:
+  - jekyll-feed # For RSS feed generation
+  - jekyll-seo-tag # For improved SEO
+
+# Exclude from Processing
+exclude:
+  - README.md
+  - LICENSE
