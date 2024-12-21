@@ -4,6 +4,6 @@ title: Heat Equation
 ---
 
 ### Pages
-- [1D heat equation using Gauss-Seidel iterations and Numba](gaussSeidelNumba.md)
+- [Solving the 2D Steady-State Heat Equation with CPU and GPU using Numba](gaussSeidelNumba.md)
 - [Other](Numba.md)
 
