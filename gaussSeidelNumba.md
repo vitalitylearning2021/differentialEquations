@@ -1,8 +1,23 @@
-# Solving the 2D Heat Equation with CPU and GPU using Numba
+---
+layout: default
+title: Solving the 2D Heat Equation with CPU and GPU using Numba
+---
+
+<script type="text/javascript">
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$', '$$'], ['\\[', '\\]']],
+  }
+};
+</script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js">
+</script>
 
 In this post, we demonstrate solving the 2D heat equation using the Gauss-Seidel iterative method, implemented both on the CPU and GPU. The GPU implementation leverages the Numba library to accelerate computations.
 
-## The Heat Equation
+### The Heat Equation
 
 The 2D steady-state heat equation is given by the partial differential equation:
 
