@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Solving the 2D Heat Equation with CPU and GPU using Numba
+title: Solving the 2D Steady-State Heat Equation with CPU and GPU using Numba
 ---
 
 <script type="text/javascript">
@@ -23,8 +23,7 @@ The 2D steady-state heat equation is given by the partial differential equation:
 
 $$ \frac{\partial^2 T}{\partial x^2} + \frac{\partial^2 T}{\partial y^2} = 0 $$
 
-where:
-- $T(x, y)$ is the temperature at a point $(x, y)$ in the domain.
+where $T(x, y)$ is the temperature at a point $(x, y)$ in the domain.
 
 This equation describes how heat diffuses in a 2D plate under steady-state conditions, assuming no internal heat sources.
 
@@ -34,15 +33,9 @@ $$ T_{i,j} = \frac{1}{4} \left( T_{i-1,j} + T_{i+1,j} + T_{i,j-1} + T_{i,j+1} \r
 
 This update formula is used iteratively to compute the temperature distribution over the grid.
 
-### LaTeX-Markdown for Equations:
+---
 
-```markdown
-\frac{\partial^2 T}{\partial x^2} + \frac{\partial^2 T}{\partial y^2} = 0
-
-T_{i,j} = \frac{1}{4} \left( T_{i-1,j} + T_{i+1,j} + T_{i,j-1} + T_{i,j+1} \right)
-```
-
-## Gauss-Seidel Iterations
+### Gauss-Seidel Iterations
 
 The Gauss-Seidel method is an iterative solver for systems of linear equations. For the heat equation, the method updates the temperature values grid point by grid point:
 
@@ -51,11 +44,11 @@ The Gauss-Seidel method is an iterative solver for systems of linear equations. 
 
 This alternating update (red-black ordering) ensures a more efficient convergence compared to updating all points simultaneously.
 
-## Code Explanation
+### Code Explanation
 
 The Python implementation of the heat equation solver is split into the following sections:
 
-### Parameters and Initialization
+#### Parameters and Initialization
 
 We define the grid size, maximum iterations, convergence tolerance, and initialize the temperature grid with boundary conditions:
 
@@ -70,7 +63,7 @@ h_T = np.zeros((ny, nx), dtype=np.float64)  # Temperature grid
 h_T[0, :] = h_T[-1, :] = h_T[:, 0] = h_T[:, -1] = 100
 ```
 
-### CUDA Kernel for Red-Black Updates
+#### CUDA Kernel for Red-Black Updates
 
 The `red_black_kernel` is a Numba CUDA kernel that updates either red or black points based on the parity of $i + j$:
 
@@ -83,7 +76,7 @@ def red_black_kernel(d_T, d_T_old, nx, ny, is_red):
             d_T[i, j] = 0.25 * (d_T_old[i-1, j] + d_T_old[i+1, j] + d_T_old[i, j-1] + d_T_old[i, j+1])
 ```
 
-### CPU Implementation of Red-Black Updates
+#### CPU Implementation of Red-Black Updates
 
 The CPU implementation uses nested loops for the red and black updates:
 
@@ -95,7 +88,7 @@ def red_black(h_T, h_T_old, nx, ny, is_red):
                 h_T[i, j] = 0.25 * (h_T_old[i-1, j] + h_T_old[i+1, j] + h_T_old[i, j-1] + h_T_old[i, j+1])
 ```
 
-### Iterative Solver
+#### Iterative Solver
 
 The main loop alternates between red and black updates until convergence is achieved:
 
@@ -118,7 +111,7 @@ for iteration in range(max_iter):
         break
 ```
 
-### Visualization and Comparison
+#### Visualization and Comparison
 
 Finally, the solution is visualized and compared between the CPU and GPU implementations:
 
@@ -138,7 +131,3 @@ rmse = 100. * np.sqrt(np.sum(np.abs(h_T - h_T_GPU)**2) / np.sum(np.abs(h_T)**2))
 print(f"Max Difference: {max_diff_CPU_GPU:.2e}")
 print(f"RMSE: {rmse:.2e}%")
 ```
-
-## Summary
-
-This implementation demonstrates the effectiveness of GPU acceleration using Numba for solving the 2D heat equation. The convergence between CPU and GPU solutions, with minor numerical differences due to precision, highlights the accuracy and speed-up achieved with parallel computing.
