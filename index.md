@@ -11,7 +11,7 @@ This is a personal webpage to showcase my projects.
 I am a developer passionate about open-source projects, machine learning, and web development.
 
 ## Projects
-- [Heat Equation](heatEquation).
+- [Heat Equation](heatEquation.md).
 - [Project 2](https://github.com/<your-username>/project2): Description of project 2.
 - [Test](page1.md)
 
