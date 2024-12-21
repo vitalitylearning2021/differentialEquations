@@ -1,5 +1,9 @@
 # Numerical solutions of differential equations on CPU and GPU
 
+### Heat Equation
+
+[Link](heatEquation.md)
+
 ## 1D advection equation
 
 [Solving the 1D Advection Equation - Numerical Discretization - Leapfrog Approach](https://vitalitylearning.medium.com/solving-the-1d-advection-equation-numerical-discretization-leapfrog-approach-fed3fbabe401)
