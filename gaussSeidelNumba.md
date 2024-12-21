@@ -42,7 +42,7 @@ The Gauss-Seidel method is an iterative solver for systems of linear equations. 
 1. **Red Points Update**: Update points where $(i + j) \mod 2 = 0$.
 2. **Black Points Update**: Update points where $(i + j) \mod 2 = 1$.
 
-This alternating update (red-black ordering) ensures a more efficient convergence compared to updating all points simultaneously.
+This alternating update (red-black ordering) ensures a more efficient convergence compared to updating all points simultaneously thanks to the possibility of parallelizing the two updates, for example, over two different GPUs.
 
 ### Code Explanation
 
