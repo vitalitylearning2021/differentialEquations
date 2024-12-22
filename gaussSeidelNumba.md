@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Solving the 2D Steady-State Heat Equation with CPU and GPU using Numba
+title: Solving the 2D Steady-State Heat Equation (Laplace Equation) with CPU and GPU using Numba
 ---
 
 <script type="text/javascript">
